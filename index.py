@@ -91,14 +91,14 @@ from keras.models import Sequential
 from keras.layers.core import Dense,Activation
 from keras.optimizers import SGD
 mdl = Sequential()
-mdl.add(Dense(50,input_dim=len(train_X[0])))
-mdl.add(Activation('sigmoid'))
-mdl.add(Dense(10))
-mdl.add(Activation('softmax'))
-sgd=SGD(lr=0.01)
-# mdl.compile(loss='mean_squared_error',optimizer=sgd)
+mdl.add(Dense(50,input_dim=len(train_X[0]))) # 输入层
+mdl.add(Activation('sigmoid')) # 激活函数
+mdl.add(Dense(10)) # 输出层
+mdl.add(Activation('softmax')) # 归一化
+sgd=SGD(lr=0.01) # 优化器
+# mdl.compile(loss='mean_squared_error',optimizer=sgd) # 编译
 mdl.compile(loss='mean_squared_error',optimizer='adam')
-mdl.fit(train_X,train_Y,nb_epoch=100,batch_size=2000)
+mdl.fit(train_X,train_Y,nb_epoch=100,batch_size=2000) # train_Y 需要是one-hot形式
 xy_lst=[(train_X,changeData(train_Y)), (validation_X,changeData(validation_Y)), (test_X,changeData(test_Y))]
 print("开始时间 :", startTime)
 for i in range(len(xy_lst)):
